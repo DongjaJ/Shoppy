@@ -17,10 +17,12 @@ export default function Navbar() {
       </Link>
       <div className="flex items-center">
         <Link to="/products">
-          <p className="text-lg mr-2 cursor-pointer">Products</p>
+          <p className="text-lg mr-2 cursor-pointer hover:text-orange-600">
+            Products
+          </p>
         </Link>
         <FiShoppingCart
-          className="text-xl mr-4 cursor-pointer"
+          className="text-xl mr-4 cursor-pointer hover:text-orange-600"
           onClick={handleClickCard}
         />
         <button className="text-xl outline-none bg-red-400 text-zinc-100 p-2 font-bold">
