@@ -1,4 +1,4 @@
-import Firebase from './Firebase';
+// import Firebase from './Firebase';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './pages/Root';
 import NotFound from './pages/NotFound';
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  console.log(Firebase);
+  // console.log(Firebase);
   return <RouterProvider router={router} />;
 }
 
