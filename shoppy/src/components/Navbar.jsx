@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiShoppingBag, FiShoppingCart } from 'react-icons/fi';
+import { BsPencilFill } from 'react-icons/bs';
 import { Link, useNavigate } from 'react-router-dom';
 import { login, logout } from '../apis/Login';
 
@@ -17,6 +18,7 @@ export default function Navbar() {
       try {
         await logout();
         setUser('');
+        alert(`${user.displayName} logout!`);
       } catch (e) {
         console.log(e);
       }
@@ -24,7 +26,7 @@ export default function Navbar() {
       try {
         const loginedUser = await login();
         setUser(loginedUser);
-        console.log(`user: ${user}`);
+        alert(`${loginedUser.displayName} login!`);
       } catch (e) {
         console.log(e);
       }
@@ -49,6 +51,10 @@ export default function Navbar() {
           className="text-xl mr-4 cursor-pointer hover:text-orange-600"
           onClick={handleClickCard}
         />
+        <Link to="/registration">
+          <BsPencilFill className="text-lg mr-2 cursor-pointer hover:text-orange-600" />
+        </Link>
+
         {user && (
           <div className="flex justify-between items-center mr-8">
             <img src={user.photoURL} alt="" className="h-8 mr-2" />

@@ -1,0 +1,8 @@
+{
+  "id": "1",
+  "thumbnail": "/image/1.webp",
+  "name": "그레이색 후드",
+  "price": "150000",
+  "category": "카테고리",
+  "options": "xs,s,m,l,xl"
+}

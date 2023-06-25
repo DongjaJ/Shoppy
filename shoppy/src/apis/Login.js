@@ -1,15 +1,9 @@
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signOut,
-} from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 
-import Firebase from '../Firebase';
+import auth from '../Firebase';
 
 const provider = new GoogleAuthProvider();
 
-const auth = getAuth();
 auth.languageCode = 'it';
 
 export async function login() {

@@ -1,0 +1,53 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "thumbnail": "/image/1.webp",
+      "name": "그레이색 후드",
+      "price": "150000",
+      "category": "카테고리"
+    },
+    {
+      "id": "2",
+      "thumbnail": "/image/2.webp",
+      "name": "그레이색 후드",
+      "price": "150000",
+      "category": "카테고리"
+    },
+    {
+      "id": "3",
+      "thumbnail": "/image/3.webp",
+      "name": "그레이색 후드",
+      "price": "150000",
+      "category": "카테고리"
+    },
+    {
+      "id": "4",
+      "thumbnail": "/image/4.webp",
+      "name": "그레이색 후드",
+      "price": "150000",
+      "category": "카테고리"
+    },
+    {
+      "id": "5",
+      "thumbnail": "/image/5.webp",
+      "name": "그레이색 후드",
+      "price": "150000",
+      "category": "카테고리"
+    },
+    {
+      "id": "6",
+      "thumbnail": "/image/6.webp",
+      "name": "그레이색 후드",
+      "price": "150000",
+      "category": "카테고리"
+    },
+    {
+      "id": "7",
+      "thumbnail": "/image/7.webp",
+      "name": "그레이색 후드",
+      "price": "150000",
+      "category": "카테고리"
+    }
+  ]
+}
