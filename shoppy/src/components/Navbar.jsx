@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FiShoppingBag, FiShoppingCart } from 'react-icons/fi';
 import { BsPencilFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { login, logout, onUserStateChanged } from '../apis/Firebase';
 import User from './User';
+import { useAuthContext } from '../context/AuthContext';
 
 export default function Navbar() {
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    onUserStateChanged((user) => {
-      console.log(user);
-      setUser(user);
-    });
-  }, []);
+  const { user, login, logout } = useAuthContext();
 
   return (
     <div className="flex items-center justify-between border-b border-gray-300 p-2">
