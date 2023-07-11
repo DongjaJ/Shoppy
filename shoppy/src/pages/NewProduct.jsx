@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function Registration() {
+export default function NewProduct() {
   return <div>Registration</div>;
 }

@@ -1,70 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiShoppingBag, FiShoppingCart } from 'react-icons/fi';
 import { BsPencilFill } from 'react-icons/bs';
-import { Link, useNavigate } from 'react-router-dom';
-import { login, logout } from '../apis/Login';
+import { Link } from 'react-router-dom';
+import { login, logout, onUserStateChanged } from '../apis/Firebase';
+import User from './User';
 
 export default function Navbar() {
-  const navigate = useNavigate();
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState();
 
-  const handleClickCard = () => {
-    user ? navigate('/carts') : navigate('/');
-  };
-
-  async function toggleLogin() {
-    console.log(`user: ${user}`);
-    if (user) {
-      try {
-        await logout();
-        setUser('');
-        alert(`${user.displayName} logout!`);
-      } catch (e) {
-        console.log(e);
-      }
-    } else {
-      try {
-        const loginedUser = await login();
-        setUser(loginedUser);
-        alert(`${loginedUser.displayName} login!`);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  }
+  useEffect(() => {
+    onUserStateChanged((user) => {
+      console.log(user);
+      setUser(user);
+    });
+  }, []);
 
   return (
-    <div className="flex items-center justify-around py-2">
+    <div className="flex items-center justify-between border-b border-gray-300 p-2">
       <Link to="/">
-        <div className="flex items-center text-orange-600 text-3xl cursor-pointer">
-          <FiShoppingBag className="mr-2" />
+        <div className="flex items-center text-brand text-4xl cursor-pointer">
+          <FiShoppingBag />
           <p>Shoppy</p>
         </div>
       </Link>
-      <div className="flex items-center">
+      <div className="flex items-center gap-4 font-semibold">
         <Link to="/products">
-          <p className="text-lg mr-2 cursor-pointer hover:text-orange-600">
-            Products
-          </p>
+          <p className="text-2xl cursor-pointer hover:text-brand">Products</p>
         </Link>
-        <FiShoppingCart
-          className="text-xl mr-4 cursor-pointer hover:text-orange-600"
-          onClick={handleClickCard}
-        />
-        <Link to="/registration">
-          <BsPencilFill className="text-lg mr-2 cursor-pointer hover:text-orange-600" />
+        <Link to="/carts">
+          {user && (
+            <FiShoppingCart className="text-2xl cursor-pointer hover:text-orange-600" />
+          )}
         </Link>
 
-        {user && (
-          <div className="flex justify-between items-center mr-8">
-            <img src={user.photoURL} alt="" className="h-8 mr-2" />
-            <p>{user.displayName}</p>
-          </div>
+        {user?.isAdmin && (
+          <Link to="/products/new">
+            <BsPencilFill className="text-2xl cursor-pointer hover:text-orange-600" />
+          </Link>
         )}
 
+        {user && <User user={user} />}
+
         <button
-          className="text-xl outline-none bg-red-400 text-zinc-100 p-2 font-bold"
-          onClick={toggleLogin}>
+          className="text-xl outline-none bg-red-400 text-zinc-100 py-2 px-4 font-bold rounded-md hover:brightness-110"
+          onClick={user ? logout : login}>
           {user ? 'Logout' : 'Login'}
         </button>
       </div>
