@@ -14,7 +14,7 @@ export default function Products({ type }) {
       {isHome && <Banner />}
       {isLoading && '<p>Loading 중..</p>'}
       {error && 'something is wrong'}
-      <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mx-32">
+      <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {products &&
           products.map(({ id, thumbnail, name, price, category }) => (
             <li key={id} onClick={() => navigate(`/products/${id}`)}>

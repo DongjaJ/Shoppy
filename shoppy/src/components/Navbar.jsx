@@ -4,6 +4,7 @@ import { BsPencilFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import User from './User';
 import { useAuthContext } from '../context/AuthContext';
+import Button from './ui/Button';
 
 export default function Navbar() {
   const { user, login, logout } = useAuthContext();
@@ -33,12 +34,8 @@ export default function Navbar() {
         )}
 
         {user && <User user={user} />}
-
-        <button
-          className="text-xl outline-none bg-red-400 text-zinc-100 py-2 px-4 font-bold rounded-md hover:brightness-110"
-          onClick={user ? logout : login}>
-          {user ? 'Logout' : 'Login'}
-        </button>
+        {!user && <Button text={'Login'} onClick={login} />}
+        {user && <Button text={'Logout'} onClick={logout} />}
       </div>
     </div>
   );
