@@ -21,3 +21,7 @@ code {
   @apply w-full max-w-screen-2xl;
   /* height: 100vh; */
 }
+
+input {
+  @apply p-4 outline-none border border-gray-300 my-1;
+}
