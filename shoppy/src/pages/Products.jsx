@@ -1,18 +1,15 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import { useNavigate } from 'react-router-dom';
-import { getProducts } from '../apis/Firebase';
-import { useQuery } from '@tanstack/react-query';
+import useProducts from '../hooks/useProducts';
 
 export default function Products({ type }) {
   const isHome = type === 'home';
   const navigate = useNavigate();
 
   const {
-    data: products,
-    isLoading,
-    error,
-  } = useQuery(['products'], getProducts);
+    productsQuery: { data: products, isLoading, error },
+  } = useProducts();
 
   return (
     <>
@@ -21,17 +18,19 @@ export default function Products({ type }) {
       {error && 'something is wrong'}
       <ul className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {products &&
-          products.map(({ id, image, title, price, category }) => (
+          products.map((product) => (
             <li
-              key={id}
-              onClick={() => navigate(`/products/${id}`)}
-              className="rounded-lg shadow-md overflow-hidden cursor-pointer">
-              <img src={image} alt={title} className="w-full" />
+              key={product.id}
+              onClick={() =>
+                navigate(`/products/${product.id}`, { state: product })
+              }
+              className="rounded-lg shadow-md overflow-hidden cursor-pointer transition-all hover:scale-105">
+              <img src={product.image} alt={product.title} className="w-full" />
               <div className="mt-2 px-2 text-lg flex justify-between items-center gap-2">
-                <h3 className="truncate">{title}</h3>
-                <p>${price}</p>
+                <h3 className="truncate">{product.title}</h3>
+                <p>${product.price}</p>
               </div>
-              <p className="mb-2 px-2 text-gray-600">{category}</p>
+              <p className="mb-2 px-2 text-gray-600">{product.category}</p>
             </li>
           ))}
       </ul>

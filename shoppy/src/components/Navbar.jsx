@@ -1,10 +1,11 @@
 import React from 'react';
-import { FiShoppingBag, FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingBag } from 'react-icons/fi';
 import { BsPencilFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import User from './User';
 import { useAuthContext } from '../context/AuthContext';
 import Button from './ui/Button';
+import CartStatus from './CartStatus';
 
 export default function Navbar() {
   const { user, login, logout } = useAuthContext();
@@ -21,11 +22,7 @@ export default function Navbar() {
         <Link to="/products">
           <p className="text-2xl cursor-pointer hover:text-brand">Products</p>
         </Link>
-        <Link to="/carts">
-          {user && (
-            <FiShoppingCart className="text-2xl cursor-pointer hover:text-orange-600" />
-          )}
-        </Link>
+        <Link to="/carts">{user && <CartStatus />}</Link>
 
         {user?.isAdmin && (
           <Link to="/products/new">
